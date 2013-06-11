@@ -5,11 +5,15 @@ A Hidden-Markov-Model Trigram Tagger (with several simple methods to deal with u
 
 ---
 
-## (a)Specification of Project Scope
+## (a) Specification of Project Scope
 
-In this project, two taggers would be built from scratch: One is a trigram HMM tagger. The other one is a baseline tagger, which is implemented to compare with the performance of trigram HMM tagger.
+* Two taggers are included: 
+> * A trigram HMM tagger;
+> * A baseline tagger, which is implemented to compare with the performance of trigram HMM tagger.
 
-Besides, two ways of handling unknown words would be implemented: One is UNK method, that is, using the emission probabilities of rare words to estimate the emission probabilities of unseen words. The other one is MORPHO, which is a modified version of UNK. Instead of marking all rare words as ‘UNK’, I made further subcategorization of these rare words based on certain morphological cues. MORPHO is actually inspired by Wen’s presentation and I found it could be easily incorporated into my tagger.
+* Two ways of handling unknown words would be implemented: 
+> * UNK method, that is, using the emission probabilities of rare words to estimate the emission probabilities of unseen words. 
+> * MORPHO method, which is a modified version of UNK. Instead of marking all rare words as ‘UNK’, I made further subcategorization of these rare words based on certain morphological cues.
 
 ## (b) Description of Implementation 
 ### 1. Data Preparation
@@ -21,16 +25,17 @@ A Brown corpus using Penn Treebank tagset is used as my dataset. The dataset con
 First, a baseline tagger is implemented to be compared with the trigram HMM. The baseline tagger just chooses the tag maximizing emission probability for a given word, no transition information is considered.
 ￼￼
 ### ￼3. Building Trigram HMM Tagger
+
 Then, a trigram HMM tagger would be built from scratch. Based on trigram Markov assumption, the transition probability is calculated as the probability of the occurrence of a tag given its previous two tags.
 Basic procedures of the trigram HMM model includes: 
 
 > 1) Read training data;
-> 2) Get counts (word-tag pair, uni-tag, bi-tag, tri-tag); 3) Estimate counts for rare words;
+> 2) Get counts (word-tag pair, uni-tag, bi-tag, tri-tag); 
+> 3) Estimate counts for rare words;
 > 4) Calculate parameters (transition & emission probability) based on counts;
 > 5) Read testing data sentence by sentence, and tag the sentence using a Viterbi algorithm. Notice that we would change the third and fifth procedures to handle unknown words.
 
 ### 4. Two methods of handling unknown words: UNK & MORPHO
-There are two major methods to handle unknown words, one is UNK and the other one is MORPHO. The general ideas of the two methods are the same, that is, using the emission probabilities of rare words to estimate the emission probabilities of unseen words. In the next few paragraphs, I will describe both of them in details.
 
 #### 4.1 UNK
 Before calculating model parameters, namely, transition and emission probabilities, we will first find all words with frequency less than 5 and give them a common label ‘<UNK>’. So, we can aggregate all rare words into a same category. Then we can get the emission counts like ￼“<UNK>, NNP”. Notice that the label does not replace the original words, but it’s added into the preexist set of emission counts, as is shown in the code below:  
