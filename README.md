@@ -29,11 +29,11 @@ First, a baseline tagger is implemented to be compared with the trigram HMM. The
 Then, a trigram HMM tagger would be built from scratch. Based on trigram Markov assumption, the transition probability is calculated as the probability of the occurrence of a tag given its previous two tags.
 Basic procedures of the trigram HMM model includes: 
 
-> 1) Read training data;
-> 2) Get counts (word-tag pair, uni-tag, bi-tag, tri-tag); 
-> 3) Estimate counts for rare words;
-> 4) Calculate parameters (transition & emission probability) based on counts;
-> 5) Read testing data sentence by sentence, and tag the sentence using a Viterbi algorithm. Notice that we would change the third and fifth procedures to handle unknown words.
+> 1. Read training data;
+> 2. Get counts (word-tag pair, uni-tag, bi-tag, tri-tag); 
+> 3. Estimate counts for rare words;
+> 4. Calculate parameters (transition & emission probability) based on counts;
+> 5. Read testing data sentence by sentence, and tag the sentence using a Viterbi algorithm. Notice that we would change the third and fifth procedures to handle unknown words.
 
 ### 4. Two methods of handling unknown words: UNK & MORPHO
 
