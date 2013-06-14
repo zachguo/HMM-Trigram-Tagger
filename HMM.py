@@ -1,4 +1,6 @@
-#! /usr/bin/python
+## siyguo@indiana.edu
+## May,2013
+
 from collections import defaultdict
 import sys
 import re

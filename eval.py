@@ -1,3 +1,6 @@
+## siyguo@indiana.edu
+## May,2013
+
 from HMM import *
 
 ## test
